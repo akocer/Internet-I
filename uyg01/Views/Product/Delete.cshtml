@@ -5,8 +5,9 @@
 @model Product
 <h1>Ürün Sil</h1>
 <h3>"<b>@Model.Name</b>" Adlı Ürün Silinecektir Onaylıyor musunuz?</h3>
-<form as asp-action="Delete" method="post">
+<form asp-controller="Product" asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id" />
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
     <input type="submit" value="Sil" class="btn btn-danger" />
 </form>
 
