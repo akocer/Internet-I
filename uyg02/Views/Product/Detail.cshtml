@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Detail";
 }
-@model Product
+@model ProductModel
 <h2>Ürün Detayı</h2>
 <hr />
 
@@ -13,10 +13,27 @@
                 <td>@Model.Name</td>
             </tr>
             <tr>
+                <td><b>Fiyatı</b></td>
+                <td>@Model.Price</td>
+            </tr>
+            <tr>
                 <td><b>Açıklama</b></td>
                 <td>@Model.Description</td>
             </tr>
+            <tr>
+                <td><b>Durumu</b></td>
+                <td>
+                    @if (Model.Status)
+                    {
+                        <span class="badge bg-success">Aktif</span>
+                    }
+                    else
+                    {
 
+                        <span class="badge bg-danger">Pasif</span>
+                    }
+                </td>
+            </tr>
         </table>
 
         <a asp-action="Index" class="btn btn-outline-secondary">Geri Dön</a>

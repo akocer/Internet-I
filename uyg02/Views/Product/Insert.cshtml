@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Insert";
 }
-@model Product
+@model ProductModel
 <h2>Ürün Ekle</h2>
 <hr />
 <div class="row">
@@ -13,12 +13,21 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
+                <label asp-for="Price" class="form-label">Ürün Fiyatı</label>
+                <input type="text" class="form-control" asp-for="Price">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
                 <label asp-for="Description" class="form-label">Ürün Açıklama</label>
                 <textarea rows="3" class="form-control" asp-for="Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label">Durumu</label>
+                <input type="checkbox" class="form-check" asp-for="Status"> Aktif
 
+            </div>
             <div class="mb-3">
                 <a asp-action="Index" class="btn btn-outline-secondary">Geri Dön</a>
                 <input type="submit" value="Kaydet" class="btn btn-outline-primary" />
