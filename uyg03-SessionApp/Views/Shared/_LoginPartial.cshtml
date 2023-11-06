@@ -1,0 +1,25 @@
+﻿﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor Accessor
+<ul class="navbar-nav">
+    @if (Accessor.HttpContext.Session.GetString("UserName") == null)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Oturum Aç</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Kayıt Ol</a>
+        </li>
+    }
+    else
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UserPage">
+                Merhaba, @Accessor.HttpContext.Session.GetString("UserName")
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Oturumu Kapat</a>
+        </li>
+    }
+</ul>
