@@ -1,0 +1,79 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using uyg04_CookieAuth.Models;
+using uyg04_CookieAuth.ViewModels;
+
+namespace uyg04_CookieAuth.Controllers
+{
+    public class TodoController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public TodoController(AppDbContext context)
+        {
+            _context = context;
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult TodoListAjax()
+        {
+            var todoModels = _context.Todos.Select(x => new TodoModel()
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Status = x.Status,
+            }).ToList();
+
+            return Json(todoModels);
+        }
+        public IActionResult TodoByIdAjax(int id)
+        {
+            var todoModel = _context.Todos.Where(s => s.Id == id).Select(x => new TodoModel()
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Status = x.Status,
+            }).SingleOrDefault();
+
+            return Json(todoModel);
+        }
+        public IActionResult TodoAddEditAjax(TodoModel model)
+        {
+            var sonuc = new SonucModel();
+            if (model.Id == 0)
+            {
+                var todo = new Todo();
+                todo.Title = model.Title;
+                todo.Status = model.Status;
+                _context.Todos.Add(todo);
+                _context.SaveChanges();
+                sonuc.Status = true;
+                sonuc.Message = "İşlem Eklendi";
+            }
+            else
+            {
+                var todo = _context.Todos.FirstOrDefault(x => x.Id == model.Id);
+                todo.Status = model.Status;
+                todo.Title = model.Title;
+                _context.SaveChanges();
+                sonuc.Status = true;
+                sonuc.Message = "İşlem Güncellendi";
+            }
+
+            return Json(sonuc);
+        }
+        public IActionResult TodoRemoveAjax(int id)
+        {
+            var todo = _context.Todos.FirstOrDefault(x => x.Id == id);
+            _context.Todos.Remove(todo);
+            _context.SaveChanges();
+
+            var sonuc = new SonucModel();
+            sonuc.Status = true;
+            sonuc.Message = "İşlem Silindi";
+            return Json(sonuc);
+        }
+    }
+}

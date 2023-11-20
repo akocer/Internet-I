@@ -36,5 +36,10 @@ namespace uyg04_CookieAuth.ViewModels
         [Required(ErrorMessage = "Parola Tekrar Giriniz!")]
         [Compare("Password", ErrorMessage = "Parola Tekrarı Tutarsızdır!")]
         public string PasswordConfirm { get; set; }
+
+
+        [Display(Name = "Fotograf")]
+        [Required(ErrorMessage = "Fotograf Seçiniz!")]
+        public IFormFile PhotoFile { get; set; }
     }
 }

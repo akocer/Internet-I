@@ -9,5 +9,6 @@ namespace uyg04_CookieAuth.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Todo> Todos { get; set; }
     }
 }

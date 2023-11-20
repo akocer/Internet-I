@@ -11,5 +11,6 @@
         public string Password { get; set; }
         public string PhotoUrl { get; set; }
         public string Role { get; set; }
+
     }
 }
