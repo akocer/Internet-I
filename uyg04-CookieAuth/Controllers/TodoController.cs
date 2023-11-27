@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using uyg04_CookieAuth.Models;
 using uyg04_CookieAuth.ViewModels;
 
@@ -39,11 +40,21 @@ namespace uyg04_CookieAuth.Controllers
 
             return Json(todoModel);
         }
+
+        [HttpPost]
         public IActionResult TodoAddEditAjax(TodoModel model)
         {
             var sonuc = new SonucModel();
             if (model.Id == 0)
             {
+
+                if (_context.Todos.Count(c => c.Title == model.Title) > 0)
+                {
+                    sonuc.Status = false;
+                    sonuc.Message = "Girilen Başlık Kayıtlıdır!";
+                    return Json(sonuc);
+                }
+
                 var todo = new Todo();
                 todo.Title = model.Title;
                 todo.Status = model.Status;
