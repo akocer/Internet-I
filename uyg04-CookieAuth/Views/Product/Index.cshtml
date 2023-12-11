@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<ProductModel>
+<h2>Ürün Listesi</h2>
+<hr />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Ürün Adı</th>
+            <th>Kategori</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@item.Name</td>
+                <td>@item.CategoryName</td>
+            </tr>
+            i++;
+        }
+
+    </tbody>
+</table>
+
