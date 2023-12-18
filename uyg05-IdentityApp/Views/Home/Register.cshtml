@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header"><h3>Kayıt Ol</h3></div>
                 <div class="card-body">
-
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
                     <div class="mb-3">
                         <label asp-for="FullName"></label>
                         <input asp-for="FullName" class="form-control" />
@@ -35,9 +35,9 @@
                         <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="PhotoFile"></label>
-                        <input asp-for="PhotoFile" class="form-control" />
-                        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                        <label asp-for="City"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="card-footer">

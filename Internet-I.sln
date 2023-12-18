@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uyg02", "uyg02\uyg02.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uyg03-SessionApp", "uyg03-SessionApp\uyg03-SessionApp.csproj", "{159DD4F4-E4F2-4F6A-AFBD-31EA912B0199}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uyg04-CookieAuth", "uyg04-CookieAuth\uyg04-CookieAuth.csproj", "{16B4A179-8DE3-4194-8B53-6BDE7A6CB2EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uyg04-CookieAuth", "uyg04-CookieAuth\uyg04-CookieAuth.csproj", "{16B4A179-8DE3-4194-8B53-6BDE7A6CB2EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uyg05-IdentityApp", "uyg05-IdentityApp\uyg05-IdentityApp.csproj", "{3A8D8418-8DC2-4998-8AC2-0D127053CD21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{16B4A179-8DE3-4194-8B53-6BDE7A6CB2EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16B4A179-8DE3-4194-8B53-6BDE7A6CB2EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16B4A179-8DE3-4194-8B53-6BDE7A6CB2EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8D8418-8DC2-4998-8AC2-0D127053CD21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8D8418-8DC2-4998-8AC2-0D127053CD21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8D8418-8DC2-4998-8AC2-0D127053CD21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8D8418-8DC2-4998-8AC2-0D127053CD21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
