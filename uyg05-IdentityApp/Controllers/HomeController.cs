@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using uyg05_IdentityApp.Models;
 using uyg05_IdentityApp.ViewModels;
 
 namespace uyg05_IdentityApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -28,12 +31,14 @@ namespace uyg05_IdentityApp.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -58,11 +63,13 @@ namespace uyg05_IdentityApp.Controllers
             ModelState.AddModelError("", "Geçersiz Kullanıcı Adı veya Parola Başarısız Giriş Sayısı :" + await _userManager.GetAccessFailedCountAsync(user) + "/3");
             return View();
         }
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
@@ -105,17 +112,48 @@ namespace uyg05_IdentityApp.Controllers
 
         public async Task<IActionResult> Logout()
         {
-
-            return View();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
 
 
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserList()
+        {
+            var userModels = await _userManager.Users.Select(x => new UserModel()
+            {
 
+                Id = x.Id,
+                FullName = x.FullName,
+                Email = x.Email,
+                UserName = x.UserName,
+                City = x.City
+            }).ToListAsync();
+            return View(userModels);
+        }
+        public async Task<IActionResult> GetRoleList()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            return View(roles);
+        }
 
+        public IActionResult RoleAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RoleAdd(AppRole model)
+        {
+            var role = await _roleManager.FindByNameAsync(model.Name);
+            if (role == null)
+            {
 
-
-
-
+                var newrole = new AppRole();
+                newrole.Name = model.Name; ;
+                await _roleManager.CreateAsync(newrole);
+            }
+            return RedirectToAction("GetRoleList");
+        }
 
 
 

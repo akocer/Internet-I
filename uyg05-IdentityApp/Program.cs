@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using uyg05_IdentityApp.Localisation;
 using uyg05_IdentityApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(options =>
 
 })
 .AddDefaultTokenProviders()
+.AddErrorDescriber<ErrorDescription>()
 .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.ConfigureApplicationCookie(opt =>
